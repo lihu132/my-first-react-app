@@ -1,6 +1,7 @@
 import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import Title from "./components/Title";
+import Modal from "./components/Modal";
 
 function App() {
   const [showEvents, setShowEvents] = useState(true);
@@ -26,7 +27,6 @@ function App() {
   return (
     <div className="App">
       <Title title="Events in Your Area" subtitle={subtitle} />
-      <Title title="another title" subtitle="another subtitle"></Title>
 
       {showEvents && (
         <div>
@@ -40,7 +40,7 @@ function App() {
       )}
       {showEvents &&
         events.map((event, index) => (
-          <div key={event.id}>
+          <React.Fragment key={event.id}>
             <h2>
               {index} - {event.title}
             </h2>
@@ -51,8 +51,9 @@ function App() {
             >
               delete event
             </button>
-          </div>
+          </React.Fragment>
         ))}
+      <Modal></Modal>
     </div>
   );
 }
